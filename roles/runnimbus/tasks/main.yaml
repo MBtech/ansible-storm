@@ -1,0 +1,3 @@
+---
+- name: Run Nimbus
+  shell: daemon ~/ansible-test/storm/apache-storm-0.10.0/bin/storm nimbus &

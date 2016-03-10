@@ -1,0 +1,20 @@
+---
+- hosts: all
+  roles:
+    - configs
+
+- hosts: zookeeper
+  roles:
+    - zookeeper
+
+- hosts: storm
+  roles:
+    - storm
+
+- hosts: nimbus
+  roles:
+    - runnimbus
+
+- hosts: supervisor
+  roles:
+    - runsupervisor

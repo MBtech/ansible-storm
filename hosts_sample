@@ -1,0 +1,15 @@
+[zookeeper]
+zkserver1 ansible_ssh_host=zkserver.foo.com
+
+[nimbus]
+nimbus1 ansible_ssh_host=nimbus1.foo.com
+
+[supervisor]
+slave1 ansible_ssh_host=slave1.foo.com
+slave3 ansible_ssh_host=slave3.foo.com
+slave2 ansible_ssh_host=slave2.foo.com
+
+[storm:children]
+nimbus
+supervisor
+
