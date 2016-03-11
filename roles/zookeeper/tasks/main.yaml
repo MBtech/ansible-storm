@@ -12,4 +12,4 @@
   copy: src=zoo.cfg dest=~/ansible-test/zookeeper/zookeeper-3.4.6/conf/zoo.cfg
 
 - name: Run Zookeeper
-  shell: daemon ~/ansible-test/zookeeper/zookeeper-3.4.6/bin/zkServer.sh start
+  shell: ~/ansible-test/zookeeper/zookeeper-3.4.6/bin/zkServer.sh start
