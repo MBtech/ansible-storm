@@ -1,15 +1,16 @@
 ---
 - name: Create Directory 
-  file: path=~/ansible-test/zookeeper state=directory recurse=yes
+  file: path={{ base_path }}/zookeeper state=directory recurse=yes owner=bilal
+  sudo: yes
 
 - name: Download Zookeeper
-  get_url: url=http://www-us.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz dest=~/ansible-test/zookeeper
+  get_url: url=http://www-us.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz dest={{ base_path }}/zookeeper
 
 - name: Untar Zookeeper
-  unarchive: src=~/ansible-test/zookeeper/zookeeper-3.4.6.tar.gz dest=~/ansible-test/zookeeper copy=no
+  unarchive: src={{ base_path }}/zookeeper/zookeeper-3.4.6.tar.gz dest={{ base_path }}/zookeeper copy=no
 
 - name: Copy config Zookeeper
-  copy: src=zoo.cfg dest=~/ansible-test/zookeeper/zookeeper-3.4.6/conf/zoo.cfg
+  copy: src=zoo.cfg dest={{ base_path }}/zookeeper/zookeeper-3.4.6/conf/zoo.cfg
 
 - name: Run Zookeeper
-  shell: ~/ansible-test/zookeeper/zookeeper-3.4.6/bin/zkServer.sh start
+  command: "{{ base_path }}/zookeeper/zookeeper-3.4.6/bin/zkServer.sh start"

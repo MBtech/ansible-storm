@@ -1,12 +1,13 @@
 ---
 - name: Create Directory
-  file: path=~/ansible-test/storm state=directory recurse=yes
+  file: path={{ base_path  }}/storm state=directory recurse=yes owner=bilal
+  sudo: yes
 
 - name: Download Storm
-  get_url: url=http://www-eu.apache.org/dist/storm/apache-storm-0.10.0/apache-storm-0.10.0.tar.gz dest=~/ansible-test/storm
+  get_url: url=http://www-eu.apache.org/dist/storm/apache-storm-0.10.0/apache-storm-0.10.0.tar.gz dest={{ base_path  }}/storm
 
 - name: Untar Storm
-  unarchive: src=~/ansible-test/storm/apache-storm-0.10.0.tar.gz dest=~/ansible-test/storm copy=no
+  unarchive: src={{ base_path }}/storm/apache-storm-0.10.0.tar.gz dest={{ base_path  }}/storm copy=no
 
 - name: Copy config Storm
-  copy: src=storm_conf.yaml dest=~/ansible-test/storm/apache-storm-0.10.0/conf/storm.yaml
+  copy: src=storm_conf.yaml dest={{ base_path  }}/storm/apache-storm-0.10.0/conf/storm.yaml

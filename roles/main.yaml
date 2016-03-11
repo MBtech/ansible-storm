@@ -16,5 +16,7 @@
     - runnimbus
 
 - hosts: supervisor
+  pre_tasks: 
+    - pause: seconds=30
   roles:
     - runsupervisor
