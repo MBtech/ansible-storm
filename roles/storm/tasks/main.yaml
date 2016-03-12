@@ -1,6 +1,6 @@
 ---
 - name: Create Directory
-  file: path={{ base_path  }}/storm state=directory recurse=yes owner=bilal
+  file: path={{ base_path  }}/storm state=directory recurse=yes owner={{ user_name }}
   sudo: yes
 
 - name: Download Storm

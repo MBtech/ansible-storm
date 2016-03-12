@@ -1,2 +1,3 @@
 ---
 base_path: /usr/local/ansible-test
+user_name: bilal
