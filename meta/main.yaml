@@ -1,0 +1,10 @@
+galaxy_info:
+  author: MBtech
+  description: Quick and easy setup for Apache Storm.
+  company: UCL
+  license: none
+  min_ansible_version: 1.9
+  galaxy_tags:
+    - apachestorm
+    - storm
+    - setup
