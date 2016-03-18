@@ -1,0 +1,12 @@
+---
+- hosts: all
+  roles:
+    - configs
+
+- hosts: zookeeper
+  roles:
+    - zookeeper
+
+- hosts: storm
+  roles:
+    - storm
