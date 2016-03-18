@@ -1,0 +1,3 @@
+---
+- name: Stop UI
+  shell: jps | grep "core" | awk '{print $1}' | xargs -I {} kill -9 {}

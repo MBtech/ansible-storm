@@ -11,6 +11,3 @@
 
 - name: Copy config Zookeeper
   copy: src=zoo.cfg dest={{ base_path }}/zookeeper/zookeeper-3.4.6/conf/zoo.cfg
-
-- name: Run Zookeeper
-  command: "{{ base_path }}/zookeeper/zookeeper-3.4.6/bin/zkServer.sh start"

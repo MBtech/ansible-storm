@@ -1,0 +1,3 @@
+---
+- name: Stop Nimbus
+  shell: jps | grep "nimbus" | awk '{print $1}' | xargs -I {} kill -9 {}

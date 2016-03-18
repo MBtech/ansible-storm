@@ -1,0 +1,16 @@
+---
+- hosts: nimbus
+  roles:
+    - stopui
+
+- hosts: supervisor
+  roles:
+    - stopsupervisor
+
+- hosts: nimbus
+  roles:
+    - stopnimbus
+
+- hosts: zookeeper
+  roles:
+    - stopzookeeper
