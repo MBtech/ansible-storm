@@ -1,0 +1,54 @@
+---
+- name: Update bashrc for JAVA_HOME
+  lineinfile:
+    dest=/etc/profile
+    line="export JAVA_HOME=/usr/lib/jvm/java-7-oracle/"
+    regexp=".*export JAVA_HOME="
+    state=present
+    insertafter=EOF
+    create=True
+  sudo: yes
+
+- name: Create Directory
+  file: path={{ base_path }}/hadoop state=directory recurse=yes owner={{ user_name }}
+  sudo: yes
+
+- name: Download Hadoop
+  get_url: url=http://www-eu.apache.org/dist/hadoop/common/hadoop-2.6.2/hadoop-2.6.2.tar.gz  dest={{ base_path }}/hadoop
+
+- name: Untar Hadoop
+  unarchive: src={{ base_path }}/hadoop/hadoop-2.6.2.tar.gz dest={{ base_path }}/hadoop copy=no
+
+- name: Create Slave file
+  local_action: lineinfile   dest={{role_path}}/files/slaves
+                regexp='.*{{item}}$'
+                line="{{item}}"
+                state=present
+  when: hostvars[item].ansible_default_ipv4.address is defined
+  with_items: groups['supervisor']
+
+- name: Create Master file
+  local_action: lineinfile   dest={{role_path}}/files/master
+                regexp='.*{{item}}$'
+                line="{{item}}"
+                state=present
+  when: hostvars[item].ansible_default_ipv4.address is defined
+  with_items: groups['nimbus']
+
+- name: Copy core-site config
+  copy: src=core-site.xml dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/core-site.xml
+
+- name: Copy hdfs-site config
+  copy: src=hdfs-site.xml dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/hdfs-site.xml
+
+- name: Copy mapred-site config
+  copy: src=mapred-site.xml dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/mapred-site.xml
+
+- name: Copy master config
+  copy: src=master dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/master
+
+- name: Copy slaves config
+  copy: src=slaves dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/slaves
+
+- name: Copy hadoop-env
+  copy: src=hadoop-env.sh dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/hadoop-env.sh

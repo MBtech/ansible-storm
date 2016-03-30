@@ -1,2 +1,3 @@
 ---
 base_path: ~/ansible-test
+storm_version: 0.9.3

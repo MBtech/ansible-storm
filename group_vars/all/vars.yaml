@@ -1,3 +1,4 @@
 ---
 base_path: /usr/local/ansible-test
 user_name: bilal
+storm_version: 0.9.3

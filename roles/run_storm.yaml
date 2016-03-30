@@ -4,6 +4,8 @@
     - runzookeeper
 
 - hosts: nimbus
+  pre_tasks: 
+    - pause: seconds=30
   roles:
     - runnimbus
 

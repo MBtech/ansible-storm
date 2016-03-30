@@ -9,7 +9,7 @@ ui.childopts: "-Xmx768m -Djava.net.preferIPv4Stack=true"
 supervisor.childopts: "-Djava.net.preferIPv4Stack=true"
 worker.childopts: "-Xmx768m -Djava.net.preferIPv4Stack=true"
  
-storm.local.dir: "~/ansible-test/app/storm"
+storm.local.dir: "/usr/local/ansible-test/app/storm"
 #This part is to configure storm to work using netty instead of using 
 #http://storm.apache.org/2013/12/08/storm090-released.html
 storm.messaging.transport: "backtype.storm.messaging.netty.Context"

@@ -1,0 +1,8 @@
+---
+- hosts: all
+  roles:
+    - configs
+
+- hosts: storm
+  roles:
+    - hadoop

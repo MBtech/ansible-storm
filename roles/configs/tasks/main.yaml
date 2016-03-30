@@ -12,3 +12,11 @@
 - name: "Install Daemon"
   apt: pkg=daemon state=present
   sudo: yes
+
+- name: "Install ifstat"
+  apt: pkg=ifstat state=present
+  sudo: yes
+
+- name: "Install sysstat"
+  apt: pkg=sysstat state=present
+  sudo: yes
