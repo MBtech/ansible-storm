@@ -2,7 +2,7 @@
 - name: Update bashrc for JAVA_HOME
   lineinfile:
     dest=/etc/profile
-    line="export JAVA_HOME=/usr/lib/jvm/java-7-oracle/"
+    line="export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/"
     regexp=".*export JAVA_HOME="
     state=present
     insertafter=EOF
@@ -14,10 +14,10 @@
   sudo: yes
 
 - name: Download Hadoop
-  get_url: url=http://www-eu.apache.org/dist/hadoop/common/hadoop-2.6.2/hadoop-2.6.2.tar.gz  dest={{ base_path }}/hadoop
+  get_url: url=http://www-eu.apache.org/dist/hadoop/common/hadoop-2.6.2/hadoop-2.6.2.tar.gz  dest={{ base_path }}/hadoop/hadoop-2.6.2.tar.gz
 
 - name: Untar Hadoop
-  unarchive: src={{ base_path }}/hadoop/hadoop-2.6.2.tar.gz dest={{ base_path }}/hadoop copy=no
+  unarchive: src={{ base_path }}/hadoop/hadoop-2.6.2.tar.gz dest={{ base_path }}/hadoop copy=no creates={{ base_path }}/hadoop/hadoop-2.6.2
 
 - name: Create Slave file
   local_action: lineinfile   dest={{role_path}}/files/slaves

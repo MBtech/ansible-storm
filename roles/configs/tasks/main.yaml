@@ -20,3 +20,15 @@
 - name: "Install sysstat"
   apt: pkg=sysstat state=present
   sudo: yes
+
+- name: "Install maven"
+  apt: pkg=maven state=present
+  sudo: yes
+
+- name: "Install Java 7"
+  apt: pkg=openjdk-7-jdk state=present
+  sudo: yes
+
+- name: "Installing perf"
+  apt: pkg=linux-tools-common state=present
+  sudo: yes

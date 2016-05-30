@@ -1,10 +1,15 @@
 ---
-- hosts: all
+- hosts: supervisor 
+  roles:
+    - configs
+
+- hosts: nimbus
   roles:
     - configs
 
 - hosts: zookeeper
   roles:
+    - configs
     - zookeeper
 
 - hosts: storm
