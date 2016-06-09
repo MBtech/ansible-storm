@@ -23,3 +23,8 @@ You will need to modify the variables specified in the `ansible-storm/group_vars
 >  **If `/home` is mounted on NFS**
 >  If you have a home directory `/home`mounted on a NFS. The root user might not be able to access that directory. Since by default ansible creates `.ansible` directory in`/home/username`, might run into some troubles for the commands that require sudo.  In order to avoid this problem you will need to direct ansible to create the .ansbile directory in a place that is accessible by the root user, perhaps `/tmp`.  Change the path for `.ansible` in `ansible_sample.cfg` and then
 >`$ cp ansible_sample.cfg ansible.cfg`
+
+## Settings
+* roles/hadoop/files/core-site.xml: Location of hadoop's temporary directory (Optional)
+* roles/hadoop/files/hadoop-env.sh: set JAVA_HOME
+* roles/storm/files/storm_conf.yaml: Location of Storm's local directory "storm.local.dir" (Optional)
