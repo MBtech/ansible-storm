@@ -1,0 +1,10 @@
+---
+- hosts: kafka
+  roles:
+    - configs
+
+- hosts: kafka
+  vars:
+     brokerid: 0
+  roles:
+    - kafka

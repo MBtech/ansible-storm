@@ -23,6 +23,6 @@
 </property>
 <property>
 <name>hadoop.tmp.dir</name>
-<value>/usr/local/ansible-test/hadoopdir</value>
+<value>/home/ubuntu/ansible-test/hadoopdir</value>
 </property>
 </configuration>

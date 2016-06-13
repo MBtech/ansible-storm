@@ -13,3 +13,5 @@ slave2 ansible_ssh_host=slave2.foo.com
 nimbus
 supervisor
 
+[kafka:children]
+nimbus

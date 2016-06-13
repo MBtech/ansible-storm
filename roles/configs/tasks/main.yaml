@@ -10,7 +10,7 @@
   with_items: groups['all']
 
 - name: "Install Daemon"
-  apt: pkg=daemon state=present
+  apt: pkg=daemon state=present update_cache=yes
   sudo: yes
 
 - name: "Install ifstat"
