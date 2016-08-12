@@ -34,7 +34,16 @@
   sudo: yes
 
 - name: "Get TDigest Service"
-  git: repo=https://github.com/MBtech/TDigestService.git dest=/home/ubuntu/ansible-test/TDigestService
+  git: repo=https://github.com/MBtech/TDigestService.git dest={{ base_path }}/TDigestService
 
 - name: "Storm Benchmark"
-  git: repo=https://github.com/MBtech/stormbenchmark.git dest=/home/ubuntu/ansible-test/storm-benchmark
+  git: repo=https://github.com/MBtech/stormbenchmark.git dest={{ base_path }}/storm-benchmark
+
+- name: "Get Redis"
+  get_url: url=http://download.redis.io/releases/redis-3.2.3.tar.gz dest={{ base_path }}/redis-3.2.3.tar.gz
+
+- name: Untar Redis
+  unarchive: src={{ base_path }}/redis-3.2.3.tar.gz dest={{ base_path }}/redis copy=no creates={{ base_path }}/redis/redis-3.2.3
+
+- name: make Redis
+  make: chdir={{ base_path }}/redis/redis-3.2.3
