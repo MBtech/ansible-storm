@@ -14,10 +14,10 @@
   sudo: yes
 
 - name: Download Hadoop
-  get_url: url=http://www-eu.apache.org/dist/hadoop/common/hadoop-2.6.2/hadoop-2.6.2.tar.gz  dest={{ base_path }}/hadoop/hadoop-2.6.2.tar.gz
+  get_url: url=http://www-eu.apache.org/dist/hadoop/common/hadoop-{{ hadoop_version }}/hadoop-{{ hadoop_version }}.tar.gz  dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}.tar.gz
 
 - name: Untar Hadoop
-  unarchive: src={{ base_path }}/hadoop/hadoop-2.6.2.tar.gz dest={{ base_path }}/hadoop copy=no creates={{ base_path }}/hadoop/hadoop-2.6.2
+  unarchive: src={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}.tar.gz dest={{ base_path }}/hadoop copy=no creates={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}
 
 - name: Create Slave file
   local_action: lineinfile   dest={{role_path}}/files/slaves
@@ -36,19 +36,19 @@
   with_items: groups['nimbus']
 
 - name: Copy core-site config
-  copy: src=core-site.xml dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/core-site.xml
+  copy: src=core-site.xml dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}/etc/hadoop/core-site.xml
 
 - name: Copy hdfs-site config
-  copy: src=hdfs-site.xml dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/hdfs-site.xml
+  copy: src=hdfs-site.xml dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}/etc/hadoop/hdfs-site.xml
 
 - name: Copy mapred-site config
-  copy: src=mapred-site.xml dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/mapred-site.xml
+  copy: src=mapred-site.xml dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}/etc/hadoop/mapred-site.xml
 
 - name: Copy master config
-  copy: src=master dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/master
+  copy: src=master dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}/etc/hadoop/master
 
 - name: Copy slaves config
-  copy: src=slaves dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/slaves
+  copy: src=slaves dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}/etc/hadoop/slaves
 
 - name: Copy hadoop-env
-  copy: src=hadoop-env.sh dest={{ base_path }}/hadoop/hadoop-2.6.2/etc/hadoop/hadoop-env.sh
+  copy: src=hadoop-env.sh dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}/etc/hadoop/hadoop-env.sh

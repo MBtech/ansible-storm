@@ -1,4 +1,9 @@
 ---
-base_path: /usr/local/ansible-test
-user_name: bilal
-storm_version: 0.9.3
+base_path: /home/ubuntu/ansible-test
+user_name: ubuntu
+storm_version: 1.0.1
+kafka_version: 0.10.0.0
+kafka_scala_version: 2.10
+hadoop_version: 2.6.2
+redis_version: 3.2.4
+

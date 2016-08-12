@@ -4,14 +4,11 @@
     - runzookeeper
 
 - hosts: nimbus
-  pre_tasks: 
-    - pause: seconds=30
   roles:
     - runnimbus
-
-- hosts: supervisor
-  pre_tasks: 
+  post_tasks: 
     - pause: seconds=30
+- hosts: supervisor
   roles:
     - runsupervisor
 

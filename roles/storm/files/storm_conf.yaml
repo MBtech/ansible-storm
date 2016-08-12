@@ -1,18 +1,18 @@
 storm.zookeeper.servers:
     - "zkserver1"
- 
+
 nimbus.host: "nimbus1"
 nimbus.childopts: "-Xmx1024m -Djava.net.preferIPv4Stack=true"
  
 ui.childopts: "-Xmx768m -Djava.net.preferIPv4Stack=true"
  
 supervisor.childopts: "-Djava.net.preferIPv4Stack=true"
-worker.childopts: "-Xmx768m -Djava.net.preferIPv4Stack=true"
+worker.childopts: "-Xmx8g -Djava.net.preferIPv4Stack=true"
  
 storm.local.dir: "/home/ubuntu/ansible-test/app/storm"
 #This part is to configure storm to work using netty instead of using 
 #http://storm.apache.org/2013/12/08/storm090-released.html
-storm.messaging.transport: "backtype.storm.messaging.netty.Context"
+storm.messaging.transport: "org.apache.storm.messaging.netty.Context"
 storm.messaging.netty.server_worker_threads: 1
 storm.messaging.netty.client_worker_threads: 1
 storm.messaging.netty.buffer_size: 5242880

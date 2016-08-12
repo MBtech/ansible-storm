@@ -12,5 +12,3 @@
 - name: Copy config Storm
   copy: src=storm_conf.yaml dest={{ base_path  }}/storm/apache-storm-{{ storm_version }}/conf/storm.yaml
 
-- name: Copy logback configuration
-  copy: src=cluster.xml dest={{ base_path  }}/storm/apache-storm-{{ storm_version }}/logback/cluster.xml

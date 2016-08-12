@@ -3,16 +3,16 @@
   file: path={{ base_path }}/kafka state=directory recurse=yes owner={{ user_name }}
 
 - name: Download Kafka
-  get_url: url=http://www-eu.apache.org/dist/kafka/0.10.0.0/kafka_2.11-0.10.0.0.tgz dest={{ base_path }}/kafka
+  get_url: url=http://www-eu.apache.org/dist/kafka/{{ kafka_version }}/kafka_{{ kafka_scala_version }}-{{kafka_version}}.tgz dest={{ base_path }}/kafka
 
 - name: Untar Kafka
-  unarchive: src={{ base_path }}/kafka/kafka_2.11-0.10.0.0.tgz dest={{ base_path }}/kafka copy=no
+  unarchive: src={{ base_path }}/kafka/kafka_{{ kafka_scala_version }}-{{kafka_version}}.tgz dest={{ base_path }}/kafka copy=no
 
 - name: Copy config Kafka
-  copy: src=server.properties dest={{ base_path }}/kafka/kafka_2.11-0.10.0.0/config/server.properties
+  copy: src=server.properties dest={{ base_path }}/kafka/kafka_{{ kafka_scala_version }}-{{kafka_version}}/config/server.properties
 
 - name: "Modifying conf file"
-  lineinfile:   dest={{ base_path }}/kafka/kafka_2.11-0.10.0.0/config/server.properties
+  lineinfile:   dest={{ base_path }}/kafka/kafka_{{ kafka_scala_version }}-{{kafka_version}}/config/server.properties
                 regexp='broker.id='
                 line="broker.id={{ brokerid | int + 1  }}"
                 state=present
