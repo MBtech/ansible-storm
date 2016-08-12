@@ -32,3 +32,9 @@
 - name: "Installing perf"
   apt: pkg=linux-tools-common state=present
   sudo: yes
+
+- name: "Get TDigest Service"
+  git: repo=https://github.com/MBtech/TDigestService.git dest=/home/ubuntu/ansible-test/TDigestService
+
+- name: "Storm Benchmark"
+  git: repo=https://github.com/MBtech/stormbenchmark.git dest=/home/ubuntu/ansible-test/storm-benchmark
