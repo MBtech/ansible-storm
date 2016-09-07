@@ -2,12 +2,12 @@
 zkserver1 ansible_ssh_host=zkserver.foo.com
 
 [nimbus]
-nimbus1 ansible_ssh_host=nimbus1.foo.com
+nimbus1 ansible_ssh_host=nimbus1.foo.com brokerid=1
 
 [supervisor]
-slave1 ansible_ssh_host=slave1.foo.com
-slave3 ansible_ssh_host=slave3.foo.com
-slave2 ansible_ssh_host=slave2.foo.com
+slave1 ansible_ssh_host=slave1.foo.com brokerid=2
+slave3 ansible_ssh_host=slave3.foo.com brokerid=3
+slave2 ansible_ssh_host=slave2.foo.com brokerid=4
 
 [storm:children]
 nimbus
@@ -15,3 +15,4 @@ supervisor
 
 [kafka:children]
 nimbus
+supervisor

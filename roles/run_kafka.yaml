@@ -1,0 +1,5 @@
+---
+- hosts: kafka
+  tasks:
+    - name: Start kafka servers
+      shell: daemon {{ base_path }}/kafka/kafka_{{ kafka_scala_version }}-{{kafka_version}}/bin/kafka-server-start.sh {{ base_path }}/kafka/kafka_{{ kafka_scala_version }}-{{kafka_version}}/config/server.properties
