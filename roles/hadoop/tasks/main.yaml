@@ -14,7 +14,7 @@
   sudo: yes
 
 - name: Download Hadoop
-  get_url: url=http://www-eu.apache.org/dist/hadoop/common/hadoop-{{ hadoop_version }}/hadoop-{{ hadoop_version }}.tar.gz  dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}.tar.gz
+  get_url: url={{ apache_server }}/hadoop/common/hadoop-{{ hadoop_version }}/hadoop-{{ hadoop_version }}.tar.gz  dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}.tar.gz
 
 - name: Untar Hadoop
   unarchive: src={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}.tar.gz dest={{ base_path }}/hadoop copy=no creates={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}

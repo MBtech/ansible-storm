@@ -4,7 +4,7 @@
   sudo: yes
 
 - name: Download Zookeeper
-  get_url: url=http://www-us.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz dest={{ base_path }}/zookeeper
+  get_url: url={{ apache_server }}/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz dest={{ base_path }}/zookeeper
 
 - name: Untar Zookeeper
   unarchive: src={{ base_path }}/zookeeper/zookeeper-3.4.6.tar.gz dest={{ base_path }}/zookeeper copy=no

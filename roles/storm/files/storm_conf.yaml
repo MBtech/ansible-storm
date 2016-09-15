@@ -7,8 +7,9 @@ nimbus.childopts: "-Xmx1024m -Djava.net.preferIPv4Stack=true"
 ui.childopts: "-Xmx768m -Djava.net.preferIPv4Stack=true"
  
 supervisor.childopts: "-Djava.net.preferIPv4Stack=true"
-worker.childopts: "-Xmx8g -Djava.net.preferIPv4Stack=true"
- 
+worker.childopts: "-Xmx2g -Djava.net.preferIPv4Stack=true"
+
+nimbus.thrift.max_buffer_size: 134217728
 storm.local.dir: "/home/ubuntu/ansible-test/app/storm"
 #This part is to configure storm to work using netty instead of using 
 #http://storm.apache.org/2013/12/08/storm090-released.html
