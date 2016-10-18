@@ -3,10 +3,10 @@
 - name: "Hosts file"
   lineinfile:   dest=/etc/hosts 
                 regexp='.*{{ item }}$'
-                line="{{ hostvars[item].ansible_default_ipv4.address }} {{item}}"
+                line="{{ hostvars[item]['private_ip'] }} {{item}}"
                 state=present
   sudo: yes
-  when: hostvars[item].ansible_default_ipv4.address is defined
+  when: hostvars[item]['private_ip'] is defined
   with_items: groups['all']
 
 - name: "Install Daemon"
@@ -32,3 +32,16 @@
 - name: "Installing perf"
   apt: pkg=linux-tools-common state=present
   sudo: yes
+
+- name: "Installing Git"
+  apt: pkg=git state=present
+  sudo: yes
+
+- name: "Download storm bench repo"
+  git: repo=https://github.com/MBtech/stormbenchmark.git dest=/home/{{ user_name }}/bilal/storm-benchmark/
+
+- name: "Download TDigestservice repo"
+  git: repo=https://github.com/MBtech/TDigestService.git dest=/home/{{ user_name }}/bilal/TDigestService/
+
+- name: "Setup cron jobs"
+  cron: name="Remove old storm logs" minute="0" job="ls -t -d -1 ~/ansible-test/storm/apache-storm-1.0.1/logs/workers-artifacts/* | tail -n +2 | xargs -I {} rm -rf {}"

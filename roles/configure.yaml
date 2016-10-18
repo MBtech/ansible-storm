@@ -6,6 +6,7 @@
 - hosts: nimbus
   roles:
     - configs
+    - masterconfig
 
 - hosts: zookeeper
   roles:
