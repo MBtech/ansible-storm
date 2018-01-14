@@ -4,10 +4,10 @@
   sudo: yes
 
 - name: Download Zookeeper
-  get_url: url={{ apache_server }}/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz dest={{ base_path }}/zookeeper
+  get_url: url={{ apache_server }}/zookeeper/zookeeper-{{ zookeeper_version }}/zookeeper-{{ zookeeper_version }}.tar.gz dest={{ base_path }}/zookeeper
 
 - name: Untar Zookeeper
-  unarchive: src={{ base_path }}/zookeeper/zookeeper-3.4.6.tar.gz dest={{ base_path }}/zookeeper copy=no
+  unarchive: src={{ base_path }}/zookeeper/zookeeper-{{ zookeeper_version }}.tar.gz dest={{ base_path }}/zookeeper copy=no
 
 - name: Copy config Zookeeper
-  copy: src=zoo.cfg dest={{ base_path }}/zookeeper/zookeeper-3.4.6/conf/zoo.cfg
+  copy: src=zoo.cfg dest={{ base_path }}/zookeeper/zookeeper-{{ zookeeper_version }}/conf/zoo.cfg

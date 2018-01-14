@@ -2,16 +2,16 @@
 - name: Update bashrc for JAVA_HOME
   lineinfile:
     dest=/etc/profile
-    line="export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/"
+    line="export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/"
     regexp=".*export JAVA_HOME="
     state=present
     insertafter=EOF
     create=True
-  sudo: yes
+  become: yes
 
 - name: Create Directory
   file: path={{ base_path }}/hadoop state=directory recurse=yes owner={{ user_name }}
-  sudo: yes
+  become: yes
 
 - name: Download Hadoop
   get_url: url={{ apache_server }}/hadoop/common/hadoop-{{ hadoop_version }}/hadoop-{{ hadoop_version }}.tar.gz  dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}.tar.gz
@@ -24,16 +24,16 @@
                 regexp='.*{{item}}$'
                 line="{{item}}"
                 state=present
-  when: hostvars[item].ansible_default_ipv4.address is defined
-  with_items: groups['supervisor']
+  when: hostvars[item]['private_ip'] is defined
+  with_items: '{{ groups["supervisor"] }}'
 
 - name: Create Master file
   local_action: lineinfile   dest={{role_path}}/files/master
                 regexp='.*{{item}}$'
                 line="{{item}}"
                 state=present
-  when: hostvars[item].ansible_default_ipv4.address is defined
-  with_items: groups['nimbus']
+  when: hostvars[item]['private_ip'] is defined
+  with_items: '{{ groups["nimbus"] }}'
 
 - name: Copy core-site config
   copy: src=core-site.xml dest={{ base_path }}/hadoop/hadoop-{{ hadoop_version }}/etc/hadoop/core-site.xml

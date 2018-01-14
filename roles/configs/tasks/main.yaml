@@ -5,43 +5,46 @@
                 regexp='.*{{ item }}$'
                 line="{{ hostvars[item]['private_ip'] }} {{item}}"
                 state=present
-  sudo: yes
+  become: true
   when: hostvars[item]['private_ip'] is defined
-  with_items: groups['all']
+  with_items: '{{ groups["all"] }}'
 
 - name: "Install Daemon"
   apt: pkg=daemon state=present update_cache=yes
-  sudo: yes
+  become: true
 
 - name: "Install ifstat"
   apt: pkg=ifstat state=present
-  sudo: yes
+  become: true
 
 - name: "Install sysstat"
   apt: pkg=sysstat state=present
-  sudo: yes
+  become: true
 
 - name: "Install maven"
   apt: pkg=maven state=present
-  sudo: yes
+  become: true
 
-- name: "Install Java 7"
-  apt: pkg=openjdk-7-jdk state=present
-  sudo: yes
+- name: "Install Java 8"
+  apt: pkg=openjdk-8-jdk state=present
+  become: true
 
 - name: "Installing perf"
   apt: pkg=linux-tools-common state=present
-  sudo: yes
+  become: true
 
 - name: "Installing Git"
   apt: pkg=git state=present
-  sudo: yes
-
-- name: "Download storm bench repo"
-  git: repo=https://github.com/MBtech/stormbenchmark.git dest=/home/{{ user_name }}/bilal/storm-benchmark/
+  become: true
 
 - name: "Download TDigestservice repo"
   git: repo=https://github.com/MBtech/TDigestService.git dest=/home/{{ user_name }}/bilal/TDigestService/
 
 - name: "Setup cron jobs"
   cron: name="Remove old storm logs" minute="0" job="ls -t -d -1 ~/ansible-test/storm/apache-storm-1.0.1/logs/workers-artifacts/* | tail -n +2 | xargs -I {} rm -rf {}"
+
+- name: "Download NTP"
+  apt: pkg=ntp state=present
+
+- name: "Download storm bench repo"
+  git: repo=https://github.com/MBtech/stormbenchmark.git dest=/home/{{ user_name }}/bilal/storm-benchmark/

@@ -2,48 +2,48 @@
 
 - name: "Install pip"
   apt: pkg=python-pip state=present
-  sudo: yes
+  become: yes
 
 - name: "Install python-dev"
   apt: pkg=python-dev state=present
-  sudo: yes
+  become: yes
 
 - name: "Install blas"
   apt: pkg=libblas-dev state=present
-  sudo: yes
+  become: yes
 
 - name: "Install lapack"
   apt: pkg=liblapack-dev state=present
-  sudo: yes
+  become: yes
 
 - name: "Install libatlas"
   apt: pkg=libatlas-base-dev state=present
-  sudo: yes
+  become: yes
 
 - name: "Install Fortran"
   apt: pkg=gfortran state=present
-  sudo: yes
+  become: yes
 
 - name: "Install pandas"
   pip: name=pandas state=present
-  sudo: yes
+  become: yes
 
 - name: "Install plotly"
   pip: name=plotly state=present
-  sudo: yes
+  become: yes
 
 - name: "Install numpy"
   pip: name=numpy state=present
-  sudo: yes
+  become: yes
 
-- name: "Install scipy"
-  pip: name=scipy state=present
-  sudo: yes
+#- name: "Install scipy"
+#  pip: name=scipy state=present
+#  sudo: yes
 
 - name: "Install statsmodels"
   pip: name=statsmodels state=present
-  sudo: yes
+  become: yes
 
 - name: "Install pyDOE"
   pip: name=pyDOE state=present
-  sudo: yes
+  become: yes

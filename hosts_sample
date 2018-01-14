@@ -1,13 +1,13 @@
 [zookeeper]
-zkserver1 ansible_ssh_host=zkserver.foo.com
+zkserver1 ansible_ssh_host=zkserver.foo.com private_ip=192.168.0.10
 
 [nimbus]
-nimbus1 ansible_ssh_host=nimbus1.foo.com brokerid=1
+nimbus1 ansible_ssh_host=nimbus1.foo.com brokerid=1 private_ip=192.168.0.20
 
 [supervisor]
-slave1 ansible_ssh_host=slave1.foo.com brokerid=2
-slave3 ansible_ssh_host=slave3.foo.com brokerid=3
-slave2 ansible_ssh_host=slave2.foo.com brokerid=4
+slave1 ansible_ssh_host=slave1.foo.com brokerid=2 private_ip=192.168.0.11
+slave3 ansible_ssh_host=slave3.foo.com brokerid=3 private_ip=192.168.0.12
+slave2 ansible_ssh_host=slave2.foo.com brokerid=4 private_ip=192.168.0.13
 
 [storm:children]
 nimbus
